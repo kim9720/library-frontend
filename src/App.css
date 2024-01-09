@@ -22,3 +22,22 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.select,
+#locale {
+  width: 100%;
+}
+.like {
+  margin-right: 10px;
+}
+
+.sidebar-link {
+  text-decoration: none;
+}
+
+.bgimage{
+  background-image: url("./components/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}

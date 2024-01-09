@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import './index.css';
+// In your index.js or App.js
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 ReactDOM.render(
-  <App />,
+    <App />,
   document.getElementById('root')
 );

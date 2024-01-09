@@ -1,4 +1,4 @@
-// Login.js
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardContent, Container, Typography, TextField, Button } from '@mui/material';
@@ -40,10 +40,12 @@ const Login = () => {
         password,
       });
 
-      const { token, dashboardRoute } = response.data;
+      const { token, dashboardRoute, user } = response.data;
 
-      // Save the token to local storage or a state management solution if needed
-      localStorage.setItem('authToken', token);
+    // Save the token and role to local storage or a state management solution if needed
+    localStorage.setItem('token', token);
+    localStorage.setItem('role', user.role);
+      console.warn(response.data);
 
       // Redirect to the appropriate dashboardRoute
       navigate(`/${dashboardRoute}`);
