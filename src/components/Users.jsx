@@ -1,4 +1,5 @@
 import React from 'react'
+import UserTable from './UserTable'
 
 export default function Users() {
   return (
@@ -18,6 +19,8 @@ export default function Users() {
             </div>
         </div>
     </div>
+    <UserTable/>
+
 </div>
   )
 }

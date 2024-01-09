@@ -10,6 +10,7 @@ import ForgotPassword from './components/ForgotPassword';
 import UserHome from './components/UserHome';
 import Books from './components/Books';
 import Users from './components/Users';
+import UserAppBar from './components/UserAppBar';
 
 const isAuthenticated = () => {
   return !!localStorage.getItem('token') && !!localStorage.getItem('role');
@@ -79,6 +80,7 @@ const App = () => {
               data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
               <ProtectedUserRoute
                 element={<>
+                <UserAppBar/>
                   {/* Add user-specific components and routes here */}
                   <Routes>
                   <Route index element={<UserHome />} />
