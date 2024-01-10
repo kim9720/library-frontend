@@ -11,6 +11,8 @@ import UserHome from './components/UserHome';
 import Books from './components/Books';
 import Users from './components/Users';
 import UserAppBar from './components/UserAppBar';
+import FavoriteBooksList from './components/FavoriteBooksList';
+
 
 const isAuthenticated = () => {
   return !!localStorage.getItem('token') && !!localStorage.getItem('role');
@@ -74,7 +76,7 @@ const App = () => {
 
         {/* User Routes */}
         <Route
-          path="/userdashboard"
+          path="/userdashboard/*"
           element={
             <div className='App' id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
               data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
@@ -84,6 +86,10 @@ const App = () => {
                   {/* Add user-specific components and routes here */}
                   <Routes>
                   <Route index element={<UserHome />} />
+                  <Route path='/userdashboard' element={<UserHome />} />
+
+                  <Route path="/favorite" element={<FavoriteBooksList />} />
+
                   </Routes>
                   {/* Add more user routes as needed */}
                 </>}

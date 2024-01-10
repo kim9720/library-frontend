@@ -38,15 +38,14 @@ const UserAppBar = () => {
     <ThemeProvider theme={theme}>
       <AppBar position="static" color="primary">
         <Toolbar>
-          <img src="/path/to/your/logo.png" alt="Logo" style={{ marginRight: '16px', height: '40px' }} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            TIES Library
+            TIES|Library
           </Typography>
         
-          <Link to="/userdashboard" color="inherit" sx={{ textDecoration: 'none', typography: 'body2' }}>
+          <Link href="/userdashboard" color="inherit" sx={{ textDecoration: 'none', typography: 'body2' }}>
             <Button color="inherit" variant="text">List of books</Button>
           </Link>
-          <Link href="#" color="inherit" sx={{ textDecoration: 'none', typography: 'body2' }}>
+          <Link href="/userdashboard/favorite" color="inherit" sx={{ textDecoration: 'none', typography: 'body2' }}>
             <Button color="inherit" variant="text">Favorite Books</Button>
           </Link>
           <IconButton color="inherit" onClick={handleMenuClick}>
