@@ -6,7 +6,7 @@ const BookImageViewer = ({ bookId }) => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/books/${bookId}/image`);
+        const response = await fetch(`https://kim.nuwarisha.org/public/api/books/${bookId}/image`);
         if (response.ok) {
           const imageData = await response.blob();
           setImageURL(URL.createObjectURL(imageData));

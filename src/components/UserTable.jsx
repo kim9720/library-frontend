@@ -32,7 +32,7 @@ const UsersTable = () => {
         // Fetch users from API
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8000/api/users');
+                const response = await fetch('https://kim.nuwarisha.org/public/api/users');
                 const data = await response.json();
                 setUsers(data);
             } catch (error) {
@@ -65,7 +65,7 @@ const UsersTable = () => {
     const handleDeleteConfirm = async () => {
         try {
             // Assuming your backend API endpoint for deleting a user is '/api/users/{id}'
-            await fetch(`http://localhost:8000/api/users/${deleteUserId}`, {
+            await fetch(`https://kim.nuwarisha.org/public/api/users/${deleteUserId}`, {
                 method: 'DELETE',
             });
 
@@ -118,7 +118,7 @@ const UsersTable = () => {
     const handleEditSave = async () => {
         try {
             // Assuming your backend API endpoint for updating a user is '/api/users/{id}'
-            await fetch(`http://localhost:8000/api/users/${editUserId}`, {
+            await fetch(`https://kim.nuwarisha.org/public/api/users/${editUserId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

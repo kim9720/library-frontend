@@ -35,7 +35,7 @@ const Register = () => {
 
     if (Object.keys(newErrors).length === 0) {
       try {
-        await axios.post('http://localhost:8000/api/register', {
+        await axios.post('https://kim.nuwarisha.org/public/api/register', {
           name,
           email,
           password,

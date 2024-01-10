@@ -66,7 +66,7 @@ const BookListTable = () => {
             formData.append('description', newBook.description);
             formData.append('image', newBook.image);
 
-            const response = await fetch('http://localhost:8000/api/books', {
+            const response = await fetch('https://kim.nuwarisha.org/public/api/books', {
                 method: 'POST',
                 body: formData,
             });
@@ -95,7 +95,7 @@ const BookListTable = () => {
         // Fetch books from your API endpoint
         const fetchBooks = async () => {
             try {
-                const response = await fetch('http://localhost:8000/api/books');
+                const response = await fetch('https://kim.nuwarisha.org/public/api/books');
                 const data = await response.json();
                 setBooks(data);
             } catch (error) {
@@ -144,7 +144,7 @@ const BookListTable = () => {
     const handleDeleteBook = async () => {
         try {
             // Make an API call to delete the book
-            const response = await fetch(`http://localhost:8000/api/books/${bookToDelete.id}`, {
+            const response = await fetch(`https://kim.nuwarisha.org/public/api/books/${bookToDelete.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

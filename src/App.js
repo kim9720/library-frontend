@@ -12,6 +12,7 @@ import Books from './components/Books';
 import Users from './components/Users';
 import UserAppBar from './components/UserAppBar';
 import FavoriteBooksList from './components/FavoriteBooksList';
+import Footer from './components/Footer';
 
 
 const isAuthenticated = () => {
@@ -91,7 +92,7 @@ const App = () => {
                   <Route path="/favorite" element={<FavoriteBooksList />} />
 
                   </Routes>
-                  {/* Add more user routes as needed */}
+                  <Footer/>
                 </>}
               />
             </div>

@@ -10,59 +10,15 @@ const Dashboard = () => {
     const [staffCount, setStaffCount] = useState(0);
     const [eventCount, setEventCount] = useState(0);
 
-    useEffect(() => {
-        // Fetch total orphans and remove orphans above 18
-        const fetchTotalOrphans = async () => {
-            try {
-                const response = await axios.get('https://backend.nuwarisha.org/api/total-orphans');
-                setTotalOrphans(response.data.totalOrphans);
-
-                await axios.get('https://backend.nuwarisha.org/api/remove-orphans-above-age');
-            } catch (error) {
-                console.error('Error fetching or removing orphans:', error);
-                setTotalOrphans('Error');
-            }
-        };
-
-        fetchTotalOrphans();
-    }, []);
-
-    useEffect(() => {
-        // Fetch widow count
-        const fetchWidowCount = async () => {
-            try {
-                const response = await axios.get('https://backend.nuwarisha.org/api/widowscount');
-                setWidowCount(response.data.widow_count);
-            } catch (error) {
-                console.error('Error fetching widow count:', error);
-            }
-        };
-
-        fetchWidowCount();
-    }, []);
-
-    useEffect(() => {
-        // Fetch elder count
-        const fetchElderCount = async () => {
-            try {
-                const response = await axios.get('https://backend.nuwarisha.org/api/elderscount');
-                setElderCount(response.data.elder_count);
-            } catch (error) {
-                console.error('Error fetching elder count:', error);
-            }
-        };
-
-        fetchElderCount();
-    }, []);
 
     useEffect(() => {
         // Fetch staff count
         const fetchStaffCount = async () => {
             try {
-                const response = await axios.get('https://backend.nuwarisha.org/api/staffcount');
-                setStaffCount(response.data.staff_count);
+                const response = await axios.get('https://kim.nuwarisha.org/public/api/bookscount');
+                setStaffCount(response.data.number_of_books);
             } catch (error) {
-                console.error('Error fetching staff count:', error);
+                console.error('Error fetching users count:', error);
             }
         };
 
@@ -73,8 +29,8 @@ const Dashboard = () => {
         // Fetch event count
         const fetchEventCount = async () => {
             try {
-                const response = await axios.get('https://backend.nuwarisha.org/api/eventscount');
-                setEventCount(response.data.event_count);
+                const response = await axios.get('https://kim.nuwarisha.org/public/api/userscount');
+                setEventCount(response.data.number_of_users);
             } catch (error) {
                 console.error('Error fetching event count:', error);
             }
