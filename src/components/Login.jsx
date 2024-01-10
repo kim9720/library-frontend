@@ -1,8 +1,11 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardContent, Container, Typography, TextField, Button } from '@mui/material';
 import axios from 'axios';
+
+// Import the background image
+import backgroundImage from './background.jpg';
+import NavBar from './NavBar';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -42,9 +45,9 @@ const Login = () => {
 
       const { token, dashboardRoute, user } = response.data;
 
-    // Save the token and role to local storage or a state management solution if needed
-    localStorage.setItem('token', token);
-    localStorage.setItem('role', user.role);
+      // Save the token and role to local storage or a state management solution if needed
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', user.role);
       console.warn(response.data);
 
       // Redirect to the appropriate dashboardRoute
@@ -57,11 +60,26 @@ const Login = () => {
   };
 
   return (
-    <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div>
+        <NavBar/>
+    <Container
+      maxWidth="xl" // "xl" is the class for extra-large containers
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        padding: '20px', // Adjust padding as needed
+      }}
+    >
+            
+
       <Card style={{ width: '450px' }}>
         <CardContent>
-          <Typography variant="h5" component="div" style={{ marginBottom: '1rem' }}>
-            Login
+          <Typography variant="h6" component="div" style={{ marginBottom: '1rem' }}>
+            TIES | Library Login
           </Typography>
           <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
             <TextField
@@ -86,7 +104,7 @@ const Login = () => {
               error={errors.password ? true : false}
               helperText={errors.password}
             />
-           
+
             <Button
               type="submit"
               variant="contained"
@@ -111,6 +129,7 @@ const Login = () => {
         </CardContent>
       </Card>
     </Container>
+    </div>
   );
 };
 

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, Container, Typography, TextField, Button, Modal } from '@mui/material';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -61,6 +62,8 @@ const Register = () => {
   };
 
   return (
+    <div>
+      <NavBar/>
     <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <Card style={{ width: '450px' }}>
         <CardContent>
@@ -142,6 +145,7 @@ const Register = () => {
         </div>
       </Modal>
     </Container>
+    </div>
   );
 };
 

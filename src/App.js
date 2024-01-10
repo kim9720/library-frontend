@@ -13,6 +13,7 @@ import Users from './components/Users';
 import UserAppBar from './components/UserAppBar';
 import FavoriteBooksList from './components/FavoriteBooksList';
 import Footer from './components/Footer';
+import NavBar from './components/NavBar';
 
 
 const isAuthenticated = () => {
