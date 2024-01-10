@@ -1,4 +1,5 @@
 import React from 'react'
+import BookListTable from './BookListTable'
 
 export default function Books() {
     return (
@@ -18,6 +19,7 @@ export default function Books() {
                     </div>
                 </div>
             </div>
+            <BookListTable/>
         </div>
     )
 }

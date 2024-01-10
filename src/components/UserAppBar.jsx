@@ -1,8 +1,9 @@
 // Updated UserAppBar.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Add this import
-import { AppBar, Toolbar, Typography, Button, IconButton, Link, Avatar, createTheme, ThemeProvider, Popover, List, ListItem, ListItemText } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, IconButton, Link, Avatar, ListItemIcon, createTheme, ThemeProvider, Popover, List, ListItem, ListItemText } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const theme = createTheme({
   palette: {
@@ -14,7 +15,7 @@ const theme = createTheme({
 
 const UserAppBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -41,10 +42,8 @@ const UserAppBar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             TIES Library
           </Typography>
-          <Link href="#" color="inherit" sx={{ textDecoration: 'none', typography: 'body2' }}>
-            <Button color="inherit" variant="text">Home</Button>
-          </Link>
-          <Link href="#" color="inherit" sx={{ textDecoration: 'none', typography: 'body2' }}>
+        
+          <Link to="/userdashboard" color="inherit" sx={{ textDecoration: 'none', typography: 'body2' }}>
             <Button color="inherit" variant="text">List of books</Button>
           </Link>
           <Link href="#" color="inherit" sx={{ textDecoration: 'none', typography: 'body2' }}>
@@ -69,9 +68,15 @@ const UserAppBar = () => {
           >
             <List>
               <ListItem button>
-                <ListItemText primary="Profile" />
+                <ListItemIcon>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary="My Profile" />
               </ListItem>
               <ListItem button onClick={handleLogout}>
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
                 <ListItemText primary="Logout" />
               </ListItem>
             </List>

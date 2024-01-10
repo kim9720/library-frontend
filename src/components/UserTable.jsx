@@ -68,7 +68,7 @@ const UsersTable = () => {
             await fetch(`http://localhost:8000/api/users/${deleteUserId}`, {
                 method: 'DELETE',
             });
-    
+
             // If the API call is successful, update the state to reflect the deletion
             setUsers(users.filter((user) => user.id !== deleteUserId));
             setDeleteUserId(null);
@@ -80,11 +80,62 @@ const UsersTable = () => {
             setDeleteDialogOpen(false);
         }
     };
-    
+
     const handleDeleteCancel = () => {
         setDeleteUserId(null);
         setDeleteDialogOpen(false);
     };
+
+
+    const [editUserId, setEditUserId] = useState(null);
+    const [editDialogOpen, setEditDialogOpen] = useState(false);
+    const [editedUserData, setEditedUserData] = useState({
+        id: null,
+        name: '',
+        email: '',
+        role: '',
+    });
+
+    const handleEdit = (userId) => {
+        // Find the user data based on userId
+        const userToEdit = users.find((user) => user.id === userId);
+        setEditUserId(userId);
+        setEditedUserData(userToEdit);
+        setEditDialogOpen(true);
+    };
+
+    const handleEditDialogClose = () => {
+        setEditUserId(null);
+        setEditedUserData({
+            id: null,
+            name: '',
+            email: '',
+            role: '',
+        });
+        setEditDialogOpen(false);
+    };
+
+    const handleEditSave = async () => {
+        try {
+            // Assuming your backend API endpoint for updating a user is '/api/users/{id}'
+            await fetch(`http://localhost:8000/api/users/${editUserId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editedUserData),
+            });
+
+            // If the API call is successful, update the state to reflect the changes
+            setUsers(users.map((user) => (user.id === editUserId ? editedUserData : user)));
+            handleEditDialogClose();
+        } catch (error) {
+            console.error('Error updating user:', error);
+            // Handle error scenarios, show a notification, etc.
+            handleEditDialogClose();
+        }
+    };
+
 
     const filteredUsers = users.filter((user) =>
         user.name.toLowerCase().includes(search.toLowerCase())
@@ -144,7 +195,7 @@ const UsersTable = () => {
                                         <TableCell>{user.role}</TableCell>
 
                                         <TableCell >
-                                            <IconButton>
+                                            <IconButton onClick={() => handleEdit(user.id)}>
                                                 <EditIcon />
                                             </IconButton>
                                             <IconButton onClick={() => handleDeleteClick(user.id)}>
@@ -179,6 +230,43 @@ const UsersTable = () => {
                     <Button onClick={handleDeleteCancel}>Cancel</Button>
                     <Button onClick={handleDeleteConfirm} color="error">
                         Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Edit Dialog */}
+            <Dialog open={editDialogOpen} onClose={handleEditDialogClose}>
+                <DialogTitle>Edit User</DialogTitle>
+                <DialogContent>
+                    {/* Create a form to edit user details */}
+                    <TextField
+                        label="Name"
+                        fullWidth
+                        value={editedUserData.name}
+                        onChange={(e) => setEditedUserData({ ...editedUserData, name: e.target.value })}
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Email"
+                        fullWidth
+                        value={editedUserData.email}
+                        onChange={(e) => setEditedUserData({ ...editedUserData, email: e.target.value })}
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Role"
+                        fullWidth
+                        value={editedUserData.role}
+                        onChange={(e) => setEditedUserData({ ...editedUserData, role: e.target.value })}
+                        margin="normal"
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleEditDialogClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleEditSave} color="primary">
+                        Save
                     </Button>
                 </DialogActions>
             </Dialog>
